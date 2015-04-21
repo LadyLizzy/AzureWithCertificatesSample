@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="AzureWithCertificatesSample" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-06.2.4">
+  <Role name="AzureWithCertificatesSample.WebApi">
+    <Instances count="1" />
+    <ConfigurationSettings />
+    <Certificates>
+      <Certificate name="WildcardServerCert" thumbprint="7BA5E64CA5A52C954E2F39F19836E1EE12578782" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+</ServiceConfiguration>

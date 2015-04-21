@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="AzureWithCertificatesSample" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2014-06.2.4">
+  <WebRole name="AzureWithCertificatesSample.WebApi" vmsize="Small">
+    <Runtime executionContext="elevated" />
+    <Startup>
+      <Task commandLine="AddCertToTrustedRootCA.cmd" executionContext="elevated" taskType="simple" />
+      <Task commandLine="InstallServerRoleIISClientCertMappingAuth.cmd" executionContext="elevated" taskType="simple" />
+    </Startup>
+    <Sites>
+      <Site name="Web">
+        <Bindings>
+          <Binding name="Endpoint1" endpointName="HTTP_Endpoint" />
+          <Binding name="Endpoint1" endpointName="HTTPS_Endpoint" />
+        </Bindings>
+      </Site>
+    </Sites>
+    <Endpoints>
+      <InputEndpoint name="HTTP_Endpoint" protocol="http" port="80" />
+      <InputEndpoint name="HTTPS_Endpoint" protocol="https" port="443" certificate="WildcardServerCert" />
+    </Endpoints>
+    <Certificates>
+      <Certificate name="WildcardServerCert" storeLocation="LocalMachine" storeName="My" />
+    </Certificates>
+  </WebRole>
+</ServiceDefinition>
